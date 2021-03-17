@@ -24,7 +24,9 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal GeoidHeightsDotNet.sln
     - name: Create the package
-      run: dotnet pack --configuration Release -p:PackageVersion=$(git describe --tags) GeoidHeightsDotNet.sln
+      run: |
+        version=`git describe --tags`
+        dotnet pack --configuration Release -p:PackageVersion=$version GeoidHeightsDotNet.sln
     - name: Upload nupkg
       uses: actions/upload-artifact@v2
       with:

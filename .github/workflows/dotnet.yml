@@ -23,8 +23,10 @@ jobs:
       run: dotnet build --no-restore GeoidHeightsDotNet.sln
     - name: Test
       run: dotnet test --no-build --verbosity normal GeoidHeightsDotNet.sln
+    - name: Create the package
+      run: dotnet pack --configuration Release -p:PackageVersion=$(git describe --tags) GeoidHeightsDotNet.sln
     - name: Upload nupkg
       uses: actions/upload-artifact@v2
       with:
         name: nupkg
-        path: GeoidHeights/bin/Debug/*.nupkg
+        path: GeoidHeights/bin/Release/*.nupkg

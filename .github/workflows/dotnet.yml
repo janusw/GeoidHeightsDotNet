@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
@@ -24,9 +26,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal GeoidHeightsDotNet.sln
     - name: Create the package
-      run: |
-        version=`git describe --tags`
-        dotnet pack --configuration Release -p:PackageVersion=$version GeoidHeightsDotNet.sln
+      run: dotnet pack --configuration Release -p:PackageVersion=$(git describe --tags) GeoidHeightsDotNet.sln
     - name: Upload nupkg
       uses: actions/upload-artifact@v2
       with:

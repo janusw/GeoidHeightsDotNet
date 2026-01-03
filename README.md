@@ -1,6 +1,9 @@
 # GeoidHeightsDotNet
 
-Calculate Geoid Undulation according to EGM96.
+Calculate point geoid undulations according to EGM96 at any given WGS84 latitude and longitude by spherical harmonic synthesis.
+
+C# library with all necessary data ported from Fortran code published here:
+http://earth-info.nga.mil/GandG/wgs84/gravitymod/egm96/egm96.html
 
 ## Usage Example
 
